@@ -1,0 +1,166 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Deals & offers · ShopEase</title><meta name="description" content="ShopEase premium demo storefront"><style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root{
+  --ink:#151515; --muted:#6e6e6e; --cream:#f7f4ef; --paper:#fff;
+  --line:#e7e2da; --accent:#d96c3b; --accent-dark:#ad4f28;
+  --green:#344c41; --soft:#eee9e1; --shadow:0 18px 50px rgba(30,24,18,.09);
+  --radius:22px; --max:1220px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0}
+img{display:block;width:100%;object-fit:cover}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+.topbar{background:var(--ink);color:#fff;text-align:center;padding:8px;font-size:12px;letter-spacing:.08em}
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;gap:28px}
+.logo{font-size:24px;font-weight:700;letter-spacing:-.05em}
+.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:24px;margin-left:auto}
+.navlinks a{font-size:14px;font-weight:600;position:relative}
+.navlinks a:after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:2px;background:var(--accent);transition:.25s}
+.navlinks a:hover:after,.navlinks a.active:after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:#fff;display:grid;place-items:center;transition:.2s}
+.icon-btn:hover{transform:translateY(-2px);border-color:var(--ink)}
+.cart-count{position:absolute;margin:-27px 0 0 25px;background:var(--accent);color:#fff;border-radius:50%;font-size:10px;min-width:18px;height:18px;display:grid;place-items:center}
+.mobile-menu{display:none}
+.hero{background:var(--cream);min-height:600px;display:grid;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:center;padding:70px 0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(52px,7vw,92px);line-height:.98;letter-spacing:-.045em;max-width:680px}
+.hero p{font-size:17px;color:var(--muted);max-width:560px;margin:25px 0 30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;transition:.25s}
+.btn:hover{background:var(--accent);transform:translateY(-2px)}
+.btn.light{background:#fff;color:var(--ink)}
+.btn.outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.hero-image{height:510px;border-radius:30px;overflow:hidden;box-shadow:var(--shadow)}
+.hero-image img{height:100%}
+.section{padding:90px 0}
+.section.alt{background:var(--cream)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:34px}
+.section h2{font-family:"Playfair Display",serif;font-size:46px;line-height:1.05}
+.section-sub{color:var(--muted);max-width:520px}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.category-card{position:relative;height:390px;border-radius:var(--radius);overflow:hidden;color:#fff}
+.category-card:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.7))}
+.category-card img{height:100%;transition:.5s}
+.category-card:hover img{transform:scale(1.06)}
+.category-copy{position:absolute;z-index:2;left:24px;right:24px;bottom:24px}
+.category-copy h3{font-size:25px}.category-copy p{font-size:13px;opacity:.85}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.product-card{position:relative}
+.product-media{height:330px;border-radius:20px;overflow:hidden;background:var(--soft);position:relative}
+.product-media img{height:100%;transition:.4s}
+.product-card:hover .product-media img{transform:scale(1.045)}
+.badge{position:absolute;top:14px;left:14px;background:#fff;padding:7px 11px;border-radius:99px;font-size:11px;font-weight:700;z-index:2}
+.heart{position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:50%;background:#fff;z-index:2;font-size:18px}
+.heart.active{color:var(--accent)}
+.product-info{padding:16px 3px}
+.brand{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.product-info h3{font-size:17px;margin:4px 0}
+.rating{font-size:12px;color:#a56a22;margin:4px 0}
+.price{font-weight:700;font-size:17px}
+.old{color:#999;text-decoration:line-through;font-size:13px;margin-left:7px;font-weight:400}
+.card-actions{display:flex;gap:8px;margin-top:12px}
+.small-btn{flex:1;padding:10px;border-radius:10px;background:var(--ink);color:#fff;font-weight:700;font-size:12px}
+.small-btn.secondary{background:var(--soft);color:var(--ink)}
+.deal{background:var(--green);color:#fff;border-radius:28px;padding:55px;display:grid;grid-template-columns:1fr auto;align-items:center}
+.deal h2{font-family:"Playfair Display",serif;font-size:48px}
+.newsletter{background:var(--cream);padding:70px 20px;text-align:center}
+.newsletter form{display:flex;max-width:570px;margin:25px auto 0;background:#fff;border:1px solid var(--line);padding:5px;border-radius:999px}
+.newsletter input{flex:1;border:0;outline:0;padding:12px 18px;background:transparent}
+.footer{background:#171717;color:#fff;padding:65px 0 25px}
+.footer-grid{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px}
+.footer h4{margin-bottom:15px}.footer p,.footer a{color:#bdbdbd;font-size:14px}.footer a{display:block;margin:8px 0}.footer-bottom{border-top:1px solid #333;margin-top:45px;padding-top:20px;color:#888;font-size:12px}
+.page-hero{background:var(--cream);padding:75px 0}.page-hero h1{font-family:"Playfair Display",serif;font-size:64px}.page-hero p{color:var(--muted);max-width:650px;margin-top:12px}
+.toolbar{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:28px;flex-wrap:wrap}
+.searchbox{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.searchbox input{border:0;outline:0;padding:12px 14px;min-width:240px}.searchbox button{background:var(--ink);color:#fff;padding:0 17px}
+select{border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:#fff}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:start}
+.detail-image{height:650px;border-radius:28px;overflow:hidden;background:var(--soft)}
+.detail-image img{height:100%}.detail h1{font-family:"Playfair Display",serif;font-size:56px;line-height:1.05;margin:8px 0 15px}.detail-price{font-size:28px;font-weight:700;margin:18px 0}.detail p{color:var(--muted)}.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;width:max-content;margin:22px 0}.qty button{background:#fff;padding:10px 15px}.qty span{min-width:35px;text-align:center}
+.cart-layout{display:grid;grid-template-columns:1.5fr .8fr;gap:35px}.cart-item{display:grid;grid-template-columns:100px 1fr auto;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);align-items:center}.cart-item img{height:100px;border-radius:14px}.summary{background:var(--cream);border-radius:22px;padding:28px;height:max-content;position:sticky;top:100px}.summary-row{display:flex;justify-content:space-between;margin:13px 0}.summary-total{border-top:1px solid #ddd;padding-top:16px;font-size:20px;font-weight:700}.empty{text-align:center;padding:80px 20px;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field input,.field textarea{border:1px solid var(--line);padding:14px;border-radius:12px;outline:0}.field textarea{min-height:150px;resize:vertical}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.about-grid img{height:550px;border-radius:28px}.about-copy h2{font-family:"Playfair Display",serif;font-size:50px;line-height:1.08;margin-bottom:18px}.about-copy p{color:var(--muted);margin:14px 0}
+.toast{position:fixed;right:22px;bottom:22px;background:var(--ink);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(130px);transition:.3s;z-index:100}.toast.show{transform:translateY(0)}
+@media(max-width:950px){.navlinks{display:none}.mobile-menu{display:grid}.hero-grid,.detail,.cart-layout,.about-grid{grid-template-columns:1fr}.hero-image{height:430px}.categories{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.deal{grid-template-columns:1fr;gap:25px}.summary{position:static}}
+@media(max-width:600px){.container{width:min(var(--max),calc(100% - 26px))}.nav{height:68px}.nav-actions .search-trigger{display:none}.hero-grid{padding:45px 0}.hero h1{font-size:52px}.hero-image{height:350px}.section{padding:60px 0}.section h2{font-size:36px}.categories,.products{grid-template-columns:1fr}.category-card{height:330px}.product-media{height:360px}.page-hero{padding:50px 0}.page-hero h1{font-size:48px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.cart-item{grid-template-columns:75px 1fr}.cart-item>div:last-child{grid-column:2}.newsletter form{border-radius:18px;flex-direction:column}.newsletter .btn{width:100%}.deal{padding:35px 25px}.deal h2{font-size:38px}.footer-grid{grid-template-columns:1fr}}
+
+</style></head><body data-category=""><div class="topbar">FREE SHIPPING ON ORDERS OVER $75 · EASY 30-DAY RETURNS</div>
+<header class="header"><div class="container nav"><a class="logo" href="index.html">shop<span>ease</span>.</a>
+<nav class="navlinks"><a class="" href="index.html">Home</a><a class="" href="shop.html">Shop</a><a class="" href="categories.html">Categories</a><a class="active" href="deals.html">Deals</a><a class="" href="about.html">About</a><a class="" href="contact.html">Contact</a></nav><div class="nav-actions"><a class="icon-btn search-trigger" href="shop.html" title="Search">⌕</a><a class="icon-btn" href="cart.html" title="Bag">🛍<span class="cart-count">0</span></a><button class="icon-btn mobile-menu">☰</button></div></div></header><main><section class="page-hero"><div class="container"><div class="eyebrow">ShopEase collection</div><h1>Deals & offers</h1><p>Selected favorites with illustrative project pricing.</p></div></section><section class="section"><div class="container"><div class="toolbar"><div class="searchbox"><input id="product-search" type="search" placeholder="Search products..."><button>⌕</button></div><select id="sort"><option value="">Sort: Featured</option><option value="low">Price: Low to high</option><option value="high">Price: High to low</option><option value="rating">Top rated</option></select></div><div id="product-grid" class="products"></div></div></section></main><section class="newsletter"><div class="container"><div class="eyebrow">Stay in the know</div><h2>Good things, straight to your inbox.</h2><p class="section-sub" style="margin:12px auto">New arrivals, thoughtful edits and members-only offers.</p><form class="demo"><input required type="email" placeholder="Your email address"><button class="btn" type="submit">Subscribe</button></form></div></section>
+<footer class="footer"><div class="container"><div class="footer-grid"><div><div class="logo">shop<span>ease</span>.</div><p style="margin-top:14px">A polished demonstration storefront built for a college project, combining thoughtful design with practical shopping interactions.</p></div><div><h4>Shop</h4><a href="shop.html">All Products</a><a href="electronics.html">Electronics</a><a href="fashion.html">Fashion</a><a href="footwear.html">Footwear</a><a href="accessories.html">Accessories</a></div><div><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="deals.html">Deals</a></div><div><h4>Help</h4><a href="cart.html">Shopping Bag</a><a href="checkout.html">Checkout</a><a href="contact.html">Support</a></div></div><div class="footer-bottom">© 2026 ShopEase · College Project Demo · Prices and product availability are illustrative.</div></div></footer><script>
+
+const PRODUCTS = [
+{id:1,brand:"Apple",name:"iPhone 15 Pro",cat:"electronics",price:999,old:1099,rating:4.9,img:"https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",desc:"Titanium design, A17 Pro chip and a pro camera system."},
+{id:2,brand:"Apple",name:"MacBook Air M3",cat:"electronics",price:1099,old:1199,rating:4.8,img:"https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=900&q=85",desc:"Lightweight performance with the Apple M3 chip."},
+{id:3,brand:"Sony",name:"WH-1000XM5",cat:"electronics",price:349,old:399,rating:4.8,img:"https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85",desc:"Premium wireless noise-cancelling headphones."},
+{id:4,brand:"Canon",name:"EOS R50",cat:"electronics",price:679,old:749,rating:4.7,img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=85",desc:"Compact mirrorless camera for creators and travel."},
+{id:5,brand:"Nike",name:"Air Max 270",cat:"footwear",price:150,old:180,rating:4.7,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85",desc:"Iconic lifestyle sneakers with visible Air cushioning."},
+{id:6,brand:"Adidas",name:"Ultraboost Light",cat:"footwear",price:180,old:210,rating:4.6,img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=900&q=85",desc:"Responsive running shoes built for everyday mileage."},
+{id:7,brand:"Ray-Ban",name:"Wayfarer Classic",cat:"accessories",price:163,old:190,rating:4.8,img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85",desc:"The unmistakable original Wayfarer silhouette."},
+{id:8,brand:"Fjällräven",name:"Kånken Backpack",cat:"accessories",price:90,old:110,rating:4.7,img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",desc:"A practical everyday backpack with Scandinavian design."},
+{id:9,brand:"Levi's",name:"501 Original Jeans",cat:"fashion",price:79,old:99,rating:4.6,img:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=85",desc:"The original straight-fit jean, designed for decades."},
+{id:10,brand:"Nike",name:"Sportswear Hoodie",cat:"fashion",price:65,old:80,rating:4.5,img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",desc:"Soft everyday fleece with a relaxed athletic fit."},
+{id:11,brand:"Apple",name:"Watch Series 9",cat:"electronics",price:399,old:449,rating:4.8,img:"https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=900&q=85",desc:"Powerful smartwatch with health and fitness features."},
+{id:12,brand:"Adidas",name:"Samba OG",cat:"footwear",price:100,old:120,rating:4.8,img:"https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=900&q=85",desc:"Low-profile terrace-inspired classic for everyday style."}
+];
+
+const money=n=>"$"+n.toLocaleString();
+const getCart=()=>JSON.parse(localStorage.getItem("shopease-cart")||"[]");
+const setCart=c=>{localStorage.setItem("shopease-cart",JSON.stringify(c));updateCartCount();};
+const getWish=()=>JSON.parse(localStorage.getItem("shopease-wish")||"[]");
+const setWish=w=>localStorage.setItem("shopease-wish",JSON.stringify(w));
+
+function toast(msg){let t=document.querySelector(".toast");if(!t){t=document.createElement("div");t.className="toast";document.body.appendChild(t)}t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)}
+function updateCartCount(){let n=getCart().reduce((a,b)=>a+b.qty,0);document.querySelectorAll(".cart-count").forEach(e=>e.textContent=n)}
+function addToCart(id){let c=getCart(),x=c.find(i=>i.id===id);x?x.qty++:c.push({id,qty:1});setCart(c);toast("Added to bag");}
+function removeFromCart(id){setCart(getCart().filter(x=>x.id!==id));renderCart()}
+function changeQty(id,d){let c=getCart(),x=c.find(i=>i.id===id);if(x){x.qty+=d;if(x.qty<=0)c=c.filter(i=>i.id!==id)}setCart(c);renderCart()}
+function toggleWish(id){let w=getWish();w=w.includes(id)?w.filter(x=>x!==id):[...w,id];setWish(w);renderProducts();toast(w.includes(id)?"Saved to wishlist":"Removed from wishlist")}
+function productCard(p){
+ let wish=getWish().includes(p.id);
+ return `<article class="product-card"><div class="product-media"><span class="badge">${p.old>p.price?"SALE":"NEW"}</span><button class="heart ${wish?"active":""}" onclick="toggleWish(${p.id})">${wish?"♥":"♡"}</button><a href="product.html?id=${p.id}"><img src="${p.img}" alt="${p.name}"></a></div><div class="product-info"><div class="brand">${p.brand}</div><h3>${p.name}</h3><div class="rating">★★★★★ <span> ${p.rating}</span></div><div class="price">${money(p.price)} <span class="old">${money(p.old)}</span></div><div class="card-actions"><button class="small-btn" onclick="addToCart(${p.id})">Add to Bag</button><a class="small-btn secondary" href="product.html?id=${p.id}">View</a></div></div></article>`
+}
+function renderProducts(){
+ let el=document.querySelector("#product-grid");if(!el)return;
+ let list=[...PRODUCTS],cat=document.body.dataset.category||"";
+ if(cat && cat!=="deals")list=list.filter(p=>p.cat===cat); if(cat==="deals")list=list.filter(p=>p.old>p.price);
+ let q=document.querySelector("#product-search")?.value.toLowerCase()||"";
+ if(q)list=list.filter(p=>(p.name+" "+p.brand+" "+p.cat).toLowerCase().includes(q));
+ let sort=document.querySelector("#sort")?.value;
+ if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);if(sort==="rating")list.sort((a,b)=>b.rating-a.rating);
+ el.innerHTML=list.length?list.map(productCard).join(""):`<div class="empty" style="grid-column:1/-1">No products match your search.</div>`;
+}
+function renderFeatured(){let e=document.querySelector("#featured-grid");if(e)e.innerHTML=PRODUCTS.slice(0,8).map(productCard).join("")}
+function renderProduct(){
+ let e=document.querySelector("#product-detail");if(!e)return;
+ let id=Number(new URLSearchParams(location.search).get("id"))||1,p=PRODUCTS.find(x=>x.id===id)||PRODUCTS[0];
+ e.innerHTML=`<div class="detail-image"><img src="${p.img}" alt="${p.name}"></div><div><div class="brand">${p.brand}</div><h1>${p.name}</h1><div class="rating">★★★★★ ${p.rating}</div><div class="detail-price">${money(p.price)} <span class="old">${money(p.old)}</span></div><p>${p.desc}</p><div class="qty"><button onclick="detailQty(-1)">−</button><span id="detail-qty">1</span><button onclick="detailQty(1)">+</button></div><button class="btn" onclick="addDetail(${p.id})">Add to Bag</button><button class="btn outline" style="margin-left:8px" onclick="toggleWish(${p.id})">♡ Wishlist</button><hr style="margin:35px 0;border:0;border-top:1px solid var(--line)"><p><b>Shipping:</b> Free standard delivery on qualifying orders.</p><p><b>Returns:</b> Easy returns within 30 days.</p></div>`;
+}
+function detailQty(d){let e=document.querySelector("#detail-qty");e.textContent=Math.max(1,Number(e.textContent)+d)}
+function addDetail(id){let q=Number(document.querySelector("#detail-qty").textContent),c=getCart(),x=c.find(i=>i.id===id);x?x.qty+=q:c.push({id,qty:q});setCart(c);toast("Added to bag")}
+function renderCart(){
+ let el=document.querySelector("#cart-items");if(!el)return;let c=getCart();
+ if(!c.length){el.innerHTML=`<div class="empty"><h2>Your bag is empty</h2><p>Discover something you'll love.</p><a class="btn" href="shop.html" style="margin-top:18px">Continue Shopping</a></div>`;document.querySelector("#subtotal").textContent="$0";return}
+ let total=0;
+ el.innerHTML=c.map(i=>{let p=PRODUCTS.find(x=>x.id===i.id);total+=p.price*i.qty;return `<div class="cart-item"><img src="${p.img}" alt="${p.name}"><div><div class="brand">${p.brand}</div><b>${p.name}</b><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${i.qty}</span><button onclick="changeQty(${p.id},1)">+</button></div></div><div><b>${money(p.price*i.qty)}</b><br><button onclick="removeFromCart(${p.id})" style="background:none;color:var(--accent);margin-top:7px">Remove</button></div></div>`}).join("");
+ document.querySelector("#subtotal").textContent=money(total);document.querySelector("#total").textContent=money(total);
+}
+function setup(){
+ updateCartCount();renderFeatured();renderProducts();renderProduct();renderCart();
+ document.querySelectorAll("#product-search").forEach(e=>e.addEventListener("input",renderProducts));
+ document.querySelectorAll("#sort").forEach(e=>e.addEventListener("change",renderProducts));
+ document.querySelectorAll(".mobile-menu").forEach(b=>b.addEventListener("click",()=>document.querySelector(".navlinks").classList.toggle("mobile-open")));
+ document.querySelectorAll("form.demo").forEach(f=>f.addEventListener("submit",e=>{e.preventDefault();toast("Thanks! Your message was submitted.");f.reset()}));
+}
+document.addEventListener("DOMContentLoaded",setup);
+
+</script><div class="toast"></div></body></html>
